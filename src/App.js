@@ -1,26 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from 'react';
 
-function App() {
+import { inject, observer } from 'mobx-react'
+import DataFile from './data.json'
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import NavBar from './components/Layout/NavBar'
+import Container from './components/Layout/Container'
+import './App.css';
+import Clients from './components/pages/Clients';
+import { Landing } from './components/pages/Landing';
+
+
+const App = inject('company')(observer((props) => {
+
+  useEffect(() => {
+    props.company.loadDataFromFile(DataFile)
+  },[])
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <NavBar />
+      <Container />
+
+      <Route path="/" exact render={() => <Landing />} />
+      <Route path="/clients" exact render={() => <Clients />} />
+      <Route path="/actions" exact />
+      <Route path="/analytics" exact />
+    </Router>
   );
-}
+}));
 
 export default App;

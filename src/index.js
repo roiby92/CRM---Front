@@ -1,12 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './App';
+import { Provider } from 'mobx-react'
+import Company from './stores/Company'
 import * as serviceWorker from './serviceWorker';
+import './index.css';
+
+const store = new Company(`Roi's company`)
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider company={store} >
+      <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
