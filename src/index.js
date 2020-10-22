@@ -6,7 +6,7 @@ import Company from './stores/Company'
 import * as serviceWorker from './serviceWorker';
 import './index.css';
 
-const store = new Company(`Roi's company`)
+const store = new Company()
 
 ReactDOM.render(
   <React.StrictMode>

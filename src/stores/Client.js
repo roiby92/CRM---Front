@@ -1,15 +1,6 @@
-import { observable} from 'mobx'
+import { makeObservable, observable} from 'mobx'
 
 export default class Client {
-    @observable id
-    @observable name
-    @observable email
-    @observable firstContact
-    @observable emailType
-    @observable sold
-    @observable owner
-    @observable country
-
     constructor(id,name,email,firstContact,emailType,sold,owner,country) {
         this.id=id
         this.name = name
@@ -19,6 +10,14 @@ export default class Client {
         this.sold = sold
         this.owner = owner
         this.country = country
+        makeObservable(this, {
+            name: observable,
+            email: observable,
+            firstContact: observable,
+            emailType: observable,
+            sold: observable,
+            owner: observable,
+            country: observable
+        })
     }
-
 }

@@ -1,5 +1,5 @@
 import React from 'react'
-import ClientTable from '../Client-Table/ClientTable';
+import ClientTable from './ClientTable';
 
 const Clients = () => {return ( <ClientTable />)};
 
